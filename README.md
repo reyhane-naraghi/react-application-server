@@ -1,14 +1,21 @@
-# توضیحات مختصر
-سرور یک وبلاگ که با اکسپرس جی اس پیاده سازی شده. استراکچر پروژه بسیار ساده است و از تایپ اسکریپت استفاده نشده.
+# React App
 
-# قابلیت ها 
-- احراز هویت
-- روت مربوط به پست با قابلیت ایجاد, لایک کردن , کامنت و...
-- روت مربوط به کاربر با قابلیت دنبال کردن و...
-- دریافت کاربر و پست بر اساس عنوان
-- و سایر قابلیت ها...
+A React social media app that allows you to share blogs, sell products, and communicate with people.
+
+# Tools
+
+- Express.js for backend
+- MongoDB
+- React.js
+- TailwindCSS
+- Ant Design
+- and more...
 
 
-# نحوه اجرا
-سرور با نودمون اجرا میشود بنابرین ابتدا میبایست نود مون را نصب کنید
-برای اجرا دستور npm start را اجرا کنید
+# Client 
+https://github.com/reyhane-naraghi/react-application-client
+
+# Run
+
+```bash
+npm start
