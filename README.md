@@ -1,6 +1,6 @@
 # React App
 
-A React social media app that allows you to share blogs, sell products, and communicate with people.
+A React social media app that allows you to share stories and communicate with people.
 
 # Tools
 
