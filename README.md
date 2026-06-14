@@ -16,6 +16,6 @@ A React social media app that allows you to share stories and communicate with p
 https://github.com/reyhane-naraghi/react-application-client
 
 # Run
-
+note: before running app install mongodb and run it.
 ```bash
 npm start
