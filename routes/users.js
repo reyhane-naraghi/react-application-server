@@ -4,6 +4,7 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const { check, validationResult } = require('express-validator');
 const User = require('../models/User');
+<<<<<<< HEAD
 const Post = require('../models/Post');
 
 
@@ -17,11 +18,31 @@ const storage = multer.diskStorage({
         cb(null, 'uploads/'); 
     },
     filename: (req, file, cb) => {
+=======
+const Post = require('../models/Post'); // برای نمایش پست‌های کاربر
+
+// --- Multer Configuration START ---
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs'); // برای حذف فایل در صورت بروز خطا
+
+// تنظیمات ذخیره‌سازی برای Multer
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/'); // تصاویر در پوشه 'uploads' ذخیره می‌شوند
+    },
+    filename: (req, file, cb) => {
+        // نام‌گذاری فایل برای جلوگیری از تکرار: fieldname-timestamp.ext
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
         cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
 
     }
 });
 
+<<<<<<< HEAD
+=======
+// فیلتر برای اطمینان از اینکه فقط تصاویر آپلود می‌شوند
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
 const fileFilter = (req, file, cb) => {
     if (file.mimetype.startsWith('image/')) {
         cb(null, true);
@@ -30,15 +51,31 @@ const fileFilter = (req, file, cb) => {
     }
 };
 
+<<<<<<< HEAD
 
+=======
+// پیکربندی نهایی Multer
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
 const upload = multer({
     storage: storage,
     fileFilter: fileFilter,
     limits: {
+<<<<<<< HEAD
         fileSize: 1024 * 1024 * 5 
     }
 });
 
+=======
+        fileSize: 1024 * 1024 * 5 // حداکثر سایز فایل: 5 مگابایت
+    }
+});
+// --- Multer Configuration END ---
+
+
+// @route   GET api/users/:user_id
+// @desc    دریافت پروفایل کاربر (شامل تعداد فالوور، فالووینگ و پست‌ها)
+// @access  Public
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
 router.get('/:user_id', async (req, res) => {
     try {
         const user = await User.findById(req.params.user_id).select('-password');
@@ -68,6 +105,16 @@ router.get('/:user_id', async (req, res) => {
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+// @route   GET api/users/search/user_name (name query)
+// @desc    دریافت پروفایل کاربر (شامل تعداد فالوور، فالووینگ و پست‌ها)
+// @access  Public
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
 router.get('/search/:user_name', async (req, res) => {
     try {
         const user = await User.find({
@@ -97,10 +144,25 @@ router.get('/search/:user_name', async (req, res) => {
 
 
 
+<<<<<<< HEAD
 router.put(
     '/profile',
     auth,
     upload.single('avatar'), 
+=======
+
+// @route   PUT api/users/profile
+// @desc    ویرایش پروفایل کاربر (فقط برای صاحب پروفایل، شامل آپلود آواتار)
+// @access  Private
+router.put(
+    '/profile',
+    auth,
+    upload.single('avatar'), // <-- Multer اینجا استفاده می‌شود. 'avatar' نام فیلد در فرانت‌اند است.
+    [
+        check('name', 'نام الزامی است').not().isEmpty(),
+        // می‌تونید برای bio و occupation هم محدودیت تعریف کنید
+    ],
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -108,6 +170,7 @@ router.put(
                 error: errors.array()
             })
         }
+<<<<<<< HEAD
         const { name, bio, occupation,phone,seller } = req.body;
 
         const profileFields = {};
@@ -116,6 +179,15 @@ router.put(
         if (bio) profileFields.bio = bio;
         if (phone) profileFields.phone = phone;
         if (occupation) profileFields.occupation = occupation;
+=======
+        const { name, bio, occupation } = req.body;
+
+        const profileFields = {};
+        if (name) profileFields.name = name;
+        if (bio) profileFields.bio = bio;
+        if (occupation) profileFields.occupation = occupation;
+        // اگر فایلی آپلود شده باشد (آواتار جدید)
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
         if (req.file && req.file !== "http://localhost:5000/profile.jpg") {
             profileFields.avatar = `http://localhost:5000/uploads/${req.file.filename}`; // ذخیره مسیر فایل جدید
         }
@@ -125,6 +197,10 @@ router.put(
 
 
 
+<<<<<<< HEAD
+=======
+            // به‌روزرسانی کاربر
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
             await User.updateOne(
                 { _id: req.user },
                 { $set: profileFields },

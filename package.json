@@ -12,8 +12,12 @@
 		"jsonwebtoken": "^9.0.2",
 		"mongoose": "^5.13.8",
 		"multer": "^2.0.0",
+<<<<<<< HEAD
 		"nodemon": "^3.1.10",
 		"react-icons": "^5.6.0",
 		"zarinpal-node-sdk": "^2.2.0"
+=======
+		"nodemon": "^3.1.10"
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
 	}
 }

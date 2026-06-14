@@ -19,11 +19,19 @@ app.use(cors());
 // این خط به Express میگه که فایل‌های موجود در پوشه 'uploads' رو در آدرس '/uploads' در دسترس قرار بده.
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+<<<<<<< HEAD
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/posts', require('./routes/posts'));
 app.use('/api/products', require('./routes/products'));
+=======
+// تعریف مسیرهای اصلی API
+// این خطوط، درخواست‌ها رو به فایل‌های مسیرهای مخصوص خودشون هدایت می‌کنن
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/users', require('./routes/users'));
+app.use('/api/posts', require('./routes/posts'));
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
 
 
 

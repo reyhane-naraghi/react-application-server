@@ -20,8 +20,13 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     avatar: {
+<<<<<<< HEAD
         type: String,
         default: "http://localhost:5000/profile.jpg"
+=======
+        type: String, // URL یا مسیر فایل تصویر پروفایل (مثلاً '/uploads/avatar-12345.jpg')
+        default: "http://localhost:5000/profile.jpg" // تصویر پیش‌فرض
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
     },
     bio: {
         type: String,
@@ -41,12 +46,15 @@ const UserSchema = new mongoose.Schema({
             }
         }
     ],
+<<<<<<< HEAD
     seller: {
         type: Boolean,
         required: true,
         default: false,
     },
     products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Products",default : [] }],
+=======
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
     following: [
         {
             user: {
@@ -58,6 +66,7 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+<<<<<<< HEAD
     },
     phone: {
         type: String,
@@ -81,6 +90,12 @@ const UserSchema = new mongoose.Schema({
 // پرداخت و حذف از سفارشات
 
 
+=======
+    }
+});
+
+// هش کردن رمز عبور قبل از ذخیره
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
 UserSchema.pre('save', async function (next) {
     if (!this.isModified('password')) {
         next();
@@ -90,7 +105,11 @@ UserSchema.pre('save', async function (next) {
     next();
 });
 
+<<<<<<< HEAD
 
+=======
+// متد برای مقایسه رمز عبور
+>>>>>>> a71a7a419fdb2a449216b16ffd806f7eb5e52ac8
 UserSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
 };
